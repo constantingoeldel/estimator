@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/v5
+/desired_output
+*stderr.txt
+*stdout.txt
