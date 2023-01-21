@@ -10,6 +10,6 @@
 # R --file=run.R --no-save --no-echo --no-restore --args 0 gene > /home/constantin/estimator/alphabeta_output.txt 2> /home/constantin/estimator/parallel_output.txt 
 
 
-parallel --jobs 26 --retries 5 --lb  R --file=run.R --no-save --no-echo --no-restore --args ::: {0..1} ::: upstream gene downstream > /home/constantin/estimator/alphabeta_test_stdout.txt 2> /home/constantin/estimator/alphabeta_test_stderr.txt 
+parallel --jobs 26 --retries 5 --lb  R --file=run.R --no-save --no-echo --no-restore --args  ::: gene upstream downstream  ::: {0..1} > /home/constantin/estimator/alphabeta_test_stdout.txt 2> /home/constantin/estimator/alphabeta_test_stderr.txt 
 
 echo "##########" done sucessfully "##########" >> /home/constantin/estimator/alphabeta_test_stdout.txt

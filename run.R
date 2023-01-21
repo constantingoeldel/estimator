@@ -1,7 +1,7 @@
 if (!requireNamespace("BiocManager", quietly = TRUE )) 
 install.packages("BiocManager" )
 #BiocManager::install(version = "3.12")
-BiocManager::install("../AlphaBeta" )
+BiocManager::install("AlphaBeta" )
 #BiocManager::install("data.table")
 #BiocManager::install("dplyr")
 # BiocManager::install("snow")
@@ -9,8 +9,8 @@ BiocManager::install("../AlphaBeta" )
 
 library(rextendr)
 source("/home/constantin/estimator/alphabeta.R")
-  i = commandArgs()[7]
-  location = commandArgs()[8]
+  i = commandArgs()[8]
+  location = commandArgs()[7]
 
   nodeFile = "nodelist.fn"
   edgeFile = "edgelist.fn"

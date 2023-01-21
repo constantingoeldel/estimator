@@ -1,3 +1,4 @@
+#!/bin/bash
 # # exit when any command fails
 # set -e
 
@@ -9,8 +10,11 @@
 
 # R --file=run.R --no-save --no-echo --no-restore --args 0 gene > /home/constantin/estimator/alphabeta_output.txt 2> /home/constantin/estimator/parallel_output.txt 
 
+run=run_2023_01_21_relative_5_1_UM
 
-parallel --jobs 26  --retries 5 --lb  R --file=run.R --no-save --no-echo --no-restore --args ::: {0..99} ::: upstream gene downstream > /home/constantin/estimator/alphabeta_stdout.txt 2> /home/constantin/estimator/alphabeta_stderr.txt
+
+parallel --jobs 32  --retries 5 --lb  R --file=run.R --no-save --no-echo --no-restore --args  ::: gene upstream downstream ::: {0..99} > /home/constantin/windows/alphabeta_stdout.txt 2> /home/constantin/windows/alphabeta_stderr.txt
+
 
 results() {
     echo $1 $2 \
@@ -18,13 +22,13 @@ results() {
         $(tail -n 2 /home/constantin/windows/$1/$2/Boutput_boot_base_beta.txt ) \
         $(tail -n 2 /home/constantin/windows/$1/$2/Boutput_standard_errors_alpha.txt) \
         $(tail -n 2 /home/constantin/windows/$1/$2/Boutput_standard_errors_beta.txt )  \
-        | awk '{print $1,$2,$4,$6,$8,$10}'   
+        | awk '{print $1,$2,$4,$6,$8,$10}' | awk '{print "INSERT into results VALUES (\x27'"$3"'\x27, \x27"$1"\x27, "$2", "$3" ,"$4", "$5", "$6");"}' |   psql -U constantin -d db
 }
 export -f results
 
-echo "##########" results "##########" >> /home/constantin/estimator/alphabeta_stdout.txt
+echo "##########" results "##########" >> /home/constantin/windows/alphabeta_stdout.txt
 
-parallel results  ::: upstream gene downstream ::: {0..99} > /home/constantin/estimator/results.txt 
+parallel results  ::: upstream gene downstream ::: {0..99} ::: $run
 
-echo "##########" done sucessfully "##########" >> /home/constantin/estimator/alphabeta_stdout.txt
+echo "##########" done sucessfully "##########" >> /home/constantin/windows/alphabeta_stdout.txt
 
