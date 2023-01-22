@@ -29,7 +29,6 @@ run.alphabeta.new<-function(nodelist,edelist,name,input.dir,output.dir){
     ##plot divergence vs delta_t 
     pedigree <- output$Pdata
     write.table(pedigree,paste0("pedigree-pdata_",name,".txt"),row.names=F,quote = F) 
-    
     output_ABneutral<- ABneutral(pedigree.data = pedigree, p0uu = p0uu_in,eqp = p0uu_in, 
                                  eqp.weight = 1, Nstarts = 2000, out.dir = output.dir,
                                  out.name = paste0("ABneutral_CG_estimates_",name,sep=""))

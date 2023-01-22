@@ -12,6 +12,7 @@ source("/home/constantin/estimator/alphabeta.R")
   i = commandArgs()[8]
   location = commandArgs()[7]
 
+  
   nodeFile = "nodelist.fn"
   edgeFile = "edgelist.fn"
   print(sprintf("Calculating epimutation rate for window %s in %s", i, location))
@@ -20,7 +21,7 @@ source("/home/constantin/estimator/alphabeta.R")
   directory = sprintf("/home/constantin/windows/%s/%s", location,  i)
   delay = runif(1, 0, 100)
   print(sprintf("Delaying for %s seconds", delay)) # to avoid overloading the R socket. Weird issue. Therefore also using --retries 5 in parallel command. 
-  Sys.sleep(delay)    
+  # Sys.sleep(delay)    
   run.alphabeta.new(nodelist=nodeFile,
                     edelist=edgeFile,
                     name=name,
