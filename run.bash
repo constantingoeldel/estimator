@@ -9,8 +9,8 @@
 
 
 # R --file=run.R --no-save --no-echo --no-restore --args 0 gene > /home/constantin/estimator/alphabeta_output.txt 2> /home/constantin/estimator/parallel_output.txt 
-
-run=run_2023_01_21_relative_5_1_UM
+source ~/.bashrc
+run=run_2023_01_24_relative_5_1_ROS
 
 
 parallel --jobs 32  --retries 5 --keep-order --line-buffer   R --file=run.R --no-save --no-echo --no-restore --args  ::: gene upstream downstream ::: {0..99} > /home/constantin/windows/alphabeta_stdout.txt 2> /home/constantin/windows/alphabeta_stderr.txt

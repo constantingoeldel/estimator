@@ -1,6 +1,6 @@
 #!/bin/bash
 
-run=run_2023_01_21_relative_5_1_UM_genes
+run=run_2023_01_23_relative_5_1_gbM_genes_nrpe
 
 
 results() {
